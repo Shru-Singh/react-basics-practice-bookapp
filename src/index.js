@@ -1,17 +1,45 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
+
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+import {books} from './books';
+import Book from './Book';
+
+const firstbook = {
+    img: 'https://images-eu.ssl-images-amazon.com/images/I/718gSz1VThL._AC_UL400_SR266,400_.jpg',
+    title: 'The Diary of A Young Girl',
+    author:  'Anne Frank',
+  };
+
+  const secondbook = {
+    img: 'https://images-eu.ssl-images-amazon.com/images/I/718gSz1VThL._AC_UL400_SR266,400_.jpg',
+    title: 'The Diary of A Young Girl',
+    author:  'Anne Frank',
+  };
+
+function BookList() {
+return (
+  <section className='Booklist'>
+    {books.map((book) => {
+      return <Book key={book.id} {...book}></Book>
+    })}
+    <Book
+      img={firstbook.img}
+      title={firstbook.title}
+      author={firstbook.author}>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+          At repudiandae possimus tempora repellendus, 
+          a obcaecati omnis nostrum facere repellat aperiam!</p>
+  </Book>
+    <Book 
+    img={secondbook.img}
+    title={secondbook.title}
+    author={secondbook.author}
+    />
+    </section>
 );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+ReactDom.render(<BookList/>, document.getElementById('root'));
